@@ -3,7 +3,9 @@ package com.example.asm1.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,68 +18,79 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class TableListAdapter extends RecyclerView.Adapter<TableListAdapter.TableViewHolder> {
-    private List<ProductModel> list;
+public class TableListAdapter extends RecyclerView.Adapter<TableListAdapter.ViewHolder> {
+    private List<ProductModel> productList;
+    private Callback callback ;
 
-    private Callback callback;
-    public TableListAdapter(List<ProductModel> list,Callback callback) {
-        this.list = list;
+
+    public TableListAdapter(List<ProductModel> productList, Callback callback) {
         this.callback = callback;
-    }
-    public void setTableItems(List<ProductModel> list) {
-        this.list = list;
+        this.productList = productList;
         notifyDataSetChanged();
     }
 
+    public void setProductList(List<ProductModel> productList) {
+        this.productList = productList;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
-    public TableListAdapter.TableViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product,parent,false);
-        return new TableViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TableListAdapter.TableViewHolder holder, int position) {
-        ProductModel model = list.get(position);
-        if(model == null){
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ProductModel product = productList.get(position);
+        if (product == null){
             return;
         }
-        holder.priceTextView.setText(String.valueOf(model.getPrice()));
-        holder.nameTextView.setText(model.getName());
-        holder.quantityTextView.setText(String.valueOf(model.getQuantity()));
-//        Picasso.get().load(album.getUrl()).into(holder.img);
-        holder.imgEdit.setOnClickListener(view -> {
-            callback.editPr(model);
+        holder.tvNameProduct.setText(product.getName());
+        holder.tvPriceProduct.setText(String.valueOf(product.getPrice()));
+        holder.tvDescriptionProduct.setText(product.getDescription());
+        Picasso.get().load(product.getImage()).into(holder.imImage);
+        holder.btnSua.setOnClickListener(v ->{
+            callback.Edit(product);
         });
-        holder.imgDelete.setOnClickListener(view -> {
-            callback.deletePr(model);
+        holder.btnXoa.setOnClickListener(v ->{
+            callback.Delete(product);
         });
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return productList==null?0: productList.size();
     }
 
-    public class TableViewHolder extends RecyclerView.ViewHolder {
-        private TextView nameTextView;
-        private TextView priceTextView;
-        private TextView quantityTextView;
-        private ImageView imgEdit;
-        private ImageView imgDelete;
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TableViewHolder(@NonNull View itemView) {
+        private RelativeLayout relyProduct;
+        private TextView tvNameProduct;
+        private TextView tvPriceProduct;
+        private TextView tvDescriptionProduct;
+        private Button btnSua;
+        private Button btnXoa;
+        private ImageView imImage;
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.tv_name);
-            priceTextView = itemView.findViewById(R.id.tv_price);
-            quantityTextView = itemView.findViewById(R.id.tv_quantity);
-            imgDelete = (ImageView) itemView.findViewById(R.id.img_delete);
-            imgEdit = (ImageView) itemView.findViewById(R.id.img_edit);
+            relyProduct = (RelativeLayout) itemView.findViewById(R.id.rely_product);
+            tvNameProduct = (TextView) itemView.findViewById(R.id.tv_nameProduct);
+            tvPriceProduct = (TextView) itemView.findViewById(R.id.tv_priceProduct);
+            imImage = (ImageView) itemView.findViewById(R.id.im_image);
+            tvDescriptionProduct = (TextView) itemView.findViewById(R.id.tv_descriptionProduct);
+            btnSua = (Button) itemView.findViewById(R.id.btn_sua);
+            btnXoa = (Button) itemView.findViewById(R.id.btn_xoa);
         }
+
+
     }
-    public  interface Callback{
-        void editPr(ProductModel model);
-        void deletePr(ProductModel model);
+    public interface Callback{
+        void Edit(ProductModel productModel);
+
+
+        void Delete(ProductModel productModel);
     }
 
 }

@@ -1,26 +1,39 @@
 package com.example.asm1.Model;
 
+
 import com.google.gson.annotations.SerializedName;
 
-public class ProductModel{
-
+public class ProductModel {
     @SerializedName("_id")
     private String id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("price")
     private int price;
-    private int quantity;
+    @SerializedName("description")
+    private String description;
+    @SerializedName("image")
+    private String image;
 
 
     public ProductModel() {
     }
 
-    public ProductModel(String id, String name, int price, int quantity) {
+    public ProductModel(String id, String name, int price, String description, String image){
         this.id = id;
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
+        this.description = description;
+        this.image = image;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
@@ -37,19 +50,19 @@ public class ProductModel{
         this.price = price;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getDescription() {
+        return description;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getId() {
-        return id;
+    public String getImage() {
+        return image;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

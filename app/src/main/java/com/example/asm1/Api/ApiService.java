@@ -17,25 +17,22 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiService {
-
     Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
-
     ApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.0.112:8000/")
+            .baseUrl("http://192.168.0.106:8000/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiService.class);
+    @GET("list")
+    Call<List<ProductModel>> getProducts();
 
-    @GET("listShop")
-    Call<List<ProductModel>> getProduct();
+    @POST("addProduct")
+    Call<List<ProductModel>> addProduct(@Body ProductModel product);
 
-    @POST("addShop")
-    Call<ProductModel> addCar(@Body ProductModel productModel);
+    @PUT("product/{id}")
+//    Call<ProductModel> updateProduct(@Body ProductModel product, @Path("id") String id);
+    Call<List<ProductModel>> updateProduct(@Path("id") String id, @Body ProductModel productModel);
 
-    @PUT("shop/{id}")
-    Call<ProductModel> updateCar(@Path("id") String id, @Body ProductModel productModel);
-
-    @DELETE("shop/{id}")
-    Call<Void> deleteCars(@Path("id") String id);
-
+    @DELETE("product/{id}")
+    Call<List<ProductModel>> deleteProduct(@Path("id") String id);
 }

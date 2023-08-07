@@ -1,103 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
-    android:layout_margin="15dp"
-    android:padding="15dp">
+    app:cardCornerRadius="20dp">
     <RelativeLayout
+        android:id="@+id/rely_product"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/id_relativeLayout"
-        android:layout_margin="10dp">
-
-        <ImageView
-            android:id="@+id/img_product"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/iphone" />
+        android:layout_height="wrap_content">
         <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="120dp">
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/im_image"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ic_launcher_background"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tên sản phẩm: "
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Quần"
-                    android:textSize="12sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp">
+                    <TextView
+                        android:id="@+id/tv_nameProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tên sản phẩm"
+                        android:textSize="20sp"
+                        />
+                    <TextView
+                        android:id="@+id/tv_priceProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Giá"
+                        android:textSize="20sp"
+                        />
+                    <TextView
+                        android:id="@+id/tv_descriptionProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Loại"
+                        android:textSize="20sp"
+                        />
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
+                android:orientation="horizontal"
+                android:gravity="center">
+                <Button
+                    android:id="@+id/btn_sua"
+                    android:layout_marginRight="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Giá sản phẩm: "
-                    android:textSize="12sp"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/tv_price"
+                    android:text="Sửa"/>
+                <Button
+                    android:id="@+id/btn_xoa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="10000"
-                    android:textSize="12sp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Số lượng: "
-                    android:textSize="12sp"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/tv_quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="abcdefghtlmth"
-                    android:textSize="12sp"
-                    android:textStyle="bold"/>
+                    android:text="Xóa"/>
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true">
-            <ImageView
-                android:id="@+id/img_edit"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/baseline_edit_24" />
-            <ImageView
-                android:id="@+id/img_delete"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/baseline_delete_24" />
-        </LinearLayout>
-
     </RelativeLayout>
+
 </androidx.cardview.widget.CardView>
